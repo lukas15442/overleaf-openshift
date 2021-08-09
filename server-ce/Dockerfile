@@ -78,9 +78,36 @@ ENV SHARELATEX_APP_NAME "Overleaf Community Edition"
 ENV OPTIMISE_PDF "true"
 
 
-EXPOSE 80
+RUN chgrp -R 0 /etc/container_environment* && \
+    chmod -R g=u /etc/container_environment*
+
+RUN chgrp -R 0 /etc/nginx && \
+    chmod -R g=u /etc/nginx
+
+RUN chgrp -R 0 /var/lib/sharelatex && \
+    chmod -R g=u /var/lib/sharelatex
+
+RUN chgrp -R 0 /var/log && \
+    chmod -R g=u /var/log
+
+RUN chgrp -R 0 /var/lib/nginx && \
+    chmod -R g=u /var/lib/nginx
+
+RUN chgrp -R 0 /etc/syslog-ng && \
+    chmod -R g=u /etc/syslog-ng
+
+RUN touch /var/run/nginx.pid && \
+    chgrp -R 0 /var/run/nginx.pid && \
+    chmod -R g=u /var/run/nginx.pid
+
+RUN chgrp -R 0 /etc/hosts && \
+    chmod -R g=u /etc/hosts
+
+EXPOSE 8080
 
 WORKDIR /
+
+
 
 ENTRYPOINT ["/sbin/my_init"]
 

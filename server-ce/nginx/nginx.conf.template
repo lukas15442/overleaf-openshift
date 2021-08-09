@@ -3,9 +3,9 @@
 ## ! See /etc/nginx/templates/               ! ##
 ## ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ##
 daemon off;
-user www-data;
+# user www-data;
 worker_processes ${NGINX_WORKER_PROCESSES};
-pid /run/nginx.pid;
+pid /var/run/nginx.pid;
 
 events {
 	worker_connections ${NGINX_WORKER_CONNECTIONS};
