@@ -100,8 +100,23 @@ RUN touch /var/run/nginx.pid && \
     chgrp -R 0 /var/run/nginx.pid && \
     chmod -R g=u /var/run/nginx.pid
 
+RUN touch /var/run/crond.pid && \
+    chgrp -R 0 /var/run/crond.pid && \
+    chmod -R g=u /var/run/crond.pid
+
 RUN chgrp -R 0 /etc/hosts && \
     chmod -R g=u /etc/hosts
+
+RUN chgrp -R 0 /var/run && \
+    chmod -R g=u /var/run
+
+RUN chgrp -R 0 /usr/sbin && \
+    chmod -R g=u /usr/sbin
+
+RUN chgrp -R 0 /etc/service && \
+    chmod -R g=u /etc/service
+
+RUN rm -r /etc/service/cron
 
 EXPOSE 8080
 
